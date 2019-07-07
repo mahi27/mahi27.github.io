@@ -1,12 +1,6 @@
-# --- General options --- #
-
-# Name of website
 title:  Musings
-
-# Short description of your site
 description:  by Mahitha
 
-# --- Local development options ---
 # If your website is hosted locally rather than on GitHub, then you need to uncomment the next two parameters to set the url and baseurl
 # *** If you're not sure what this mean, then leave this section as it is. Only modify the url and baseurl if you know what you're doing!***
 
@@ -24,11 +18,11 @@ navbar-links:
   Resources:
     - Beautiful Jekyll: "http://deanattali.com/beautiful-jekyll/"
     - Learn markdown: "http://www.markdowntutorial.com/"
-  Author's home: "http://www.github.com/mahi27"
+  Author's home:  "http://www.github.com/mahi27"
 
 # Image to show in the navigation bar - image must be a square (width = height)
 # Remove this parameter if you don't want an image in the navbar
-avatar: https://avatars2.githubusercontent.com/u/14161229?s=400&u=33ada545398a381c87905ac21e3412c6927257a0&v=4
+avatar: "https://avatars2.githubusercontent.com/u/14161229?s=400&u=33ada545398a381c87905ac21e3412c6927257a0&v=4"
 
 # If you want to have an image logo in the top-left corner instead of the title text,
 # then specify the following parameter
@@ -68,7 +62,7 @@ author:
 # If you want to add a new link that isn't here, you'll need to also edit the file _data/SocialNetworks.yml
 social-network-links:
   rss: true
-  email: "mahitasree@gmail.com"
+  email:  "mahitasree@gmail.com"
   github: mahi27
 # twitter: daattali
 #  reddit: yourname
@@ -86,7 +80,7 @@ social-network-links:
 
 # Select which share links to show in posts
 share-links-active:
-  twitter: false
+  twitter:  false
   facebook: true
   linkedin: true
 
@@ -117,7 +111,7 @@ google_analytics: UA-120959956-1
 # --- Comments --- #
 
 # Fill in your Disqus shortname (NOT the userid) if you want to support Disqus comments
- disqus: mahi27-github-io
+ disqus:  mahi27-github-io
 
 # If you want to use JustComments fill with the API Key
 #just-comments: "ABCD-EFGH-IJKL"
