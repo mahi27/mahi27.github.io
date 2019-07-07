@@ -1,1 +1,1 @@
-Github Page built using beautiful-jekyll
+Github Page built using beautiful-jekyll by Dean Attali
