@@ -24,11 +24,11 @@ navbar-links:
   Resources:
     - Beautiful Jekyll: "http://deanattali.com/beautiful-jekyll/"
     - Learn markdown: "http://www.markdowntutorial.com/"
-  Author's home: "http://deanattali.com"
+  Author's home: "http://github.com/mahi27"
 
 # Image to show in the navigation bar - image must be a square (width = height)
 # Remove this parameter if you don't want an image in the navbar
-avatar: "/img/avatar-icon.png"
+avatar: https://avatars2.githubusercontent.com/u/14161229?s=400&u=33ada545398a381c87905ac21e3412c6927257a0&v=4
 
 # If you want to have an image logo in the top-left corner instead of the title text,
 # then specify the following parameter
@@ -68,12 +68,12 @@ author:
 # If you want to add a new link that isn't here, you'll need to also edit the file _data/SocialNetworks.yml
 social-network-links:
   rss: true
-  email: "someone@example.com"
-  facebook: deanattali
-  github: daattali
-  twitter: daattali
+  email: "mahitasree@gmail.com"
+  #facebook: deanattali
+  github: mahi27
+  #twitter: daattali
 #  reddit: yourname
-#  linkedin: daattali
+  linkedin: mahithasree
 #  xing: yourname
 #  stackoverflow: "3943160/daattali"
 #  snapchat: deanat78
