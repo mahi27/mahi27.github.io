@@ -1,0 +1,123 @@
+---
+layout: post
+title: Detection of Fraudulent Transactions
+excerpt: It takes a machine to catch a thief
+permalink: /Detection-of-Fraudulent-Transactions
+publish: true
+images:
+  - url: /images/creditcard_fraud/cardthief.gif
+---
+<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+
+<h2><span style="text-decoration: underline;"><strong>Introduction</strong></span></h2>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Banking and financial institutions are facing severe challenges due to fraudulent transactions. 2015 alone saw a $21.84 billion fraud losses on credit, debit and prepaid cards. An article published in <a href = "https://www.forbes.com/sites/rogeraitken/2016/10/26/us-card-fraud-losses-could-exceed-12bn-by-2020/" target="_blank">Forbes</a> predicts that this could grow by 45% by 2020. Traditional approach of using rules and authenticating transactions is no longer a viable method due to the plethora of payment channels and adept criminals. Machine learning enables to detect and recognize patterns on customer’s purchase history efficiently even on larger datasets.  Using machine learning for fraud detection is no longer a trend, it’s a necessity.</p>
+<p>In this post, we will be looking at implementing a logistic regression model for detecting fraudulent credit card transactions. 
+</p>
+
+
+<h2><span style="text-decoration: underline;"><strong>Dataset</strong></span></h2>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The dataset used in this post is from <a href = "https://www.kaggle.com/mlg-ulb/creditcardfraud/home" target="_blank">Kaggle</a>. It consists of credit card transactions of two days belonging to European cardholders. Due to confidentiality issues, the original features were transformed to principal components. The features given in the dataset consists of 28 principal components along with the variables, time and amount. 'Time' is the time difference in seconds between each transaction and the first transaction in the dataset. 'Amount' refers to the transaction amount. The response variable, ‘Class’ is a binary variable indicating 1 for fraudulent transaction and 0 otherwise.
+</p>
+
+<h2><span style="text-decoration: underline;"><strong>Approach</strong></span></h2>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp The objective is to predict whether a transaction is fraudulent. In ML terms, this is a classification problem. Some common types of classification algorithms are:
+<ul>
+<li>Logistic Regression</li>
+<li>Naive Bayes</li>
+<li>Support Vector Machines</li>
+<li>Decision Trees</li>
+<li>Boosted Trees </li>
+<li>Random Forests</li>
+<li>Neural Networks </li>
+</ul>
+</p>
+<p>In this post we will implement a logistic regression model but before that, it is important to understand what principal components are and how are they representing the original features.</p>
+<h4>Principal Components </h4>
+<p>Let’s say our data has 100 features to predict the response variable. Instead of using every feature in the model, we might drop some variables and use only the features which we think will best predict the response variable. The disadvantage is that we will lose the information represented by the dropped features. Principal Component Analysis (PCA) is a dimensionality reduction technique, it combines the features in a way such that we can drop variables while retaining the important information of all the features.
+</p>
+<p>For example, we have a data like this: </p>
+<figure><img src="images/creditcard_fraud/pca.PNG" align = "middle"> <figcaption style = "font-size:15px;"></figcaption></figure>
+<p>Instead of our traditional X-axis, let’s say we will make the dotted line as our axis, then we can represent 90% of the points using only one dimension. If we draw a new y-axis perpendicular to the dotted line, the entire data can be represented in a different way.</p>
+<p>If our data has n features, we get n new feature vectors by principal component analysis. These n features are ordered by the percentage of variance in target variable explained by them. For eg, The 1st principal component explains 90% of the cummulative variance in the response variable, 2nd principal component explains 94% of the cummulative variance...........nth principal component explains 100% of the cummulative variance.</p>
+<p>For a more detailed explanation on PCA, see the links given below: </p>
+<p><a href = "http://setosa.io/ev/principal-component-analysis/" target="_blank">Setosa.ai - PCA Explained visually </a></p>
+<p><a href = "https://towardsdatascience.com/a-one-stop-shop-for-principal-component-analysis-5582fb7e0a9c" target="_blank">A One-Stop Shop for Principal Component Analysis</a></p>
+<p>Now that we understood what principle components are, we will understand how logistic regression works.</p>
+<h4>Logistic Regression </h4>
+<p>Logistic regression is a type of classification algorithm which is being used since early twentieth century. The algorithm tries to find relationship between the features and probability of a particular outcome. Logistics regression is further divided into various sub-types – binary, multinomial, ordinal; depending upon the type of response variable. In this post, we will build a binary logistic model as our response variable is binary - ‘Fraud’ or ‘Not Fraud’.
+</p>
+<p>Why are we predicting the probability instead of just 0 or 1?</p>
+<p>If we predict the outcome using regression, it would perform poorly in most of the cases as the range is not restricted and is highly affected by outliers. The outcome would be modeled as, </p>
+<figure><img src="images/creditcard_fraud/linearequation.PNG" align = "middle"> <figcaption style = "font-size:15px;"></figcaption></figure>
+<p>But, it doesn’t make sense for the target variable to take values other than 0 or 1. T fix this, a sigmoid function or a logistic function is applied to the regression equation. </p>
+<figure><img src="images/creditcard_fraud/logit.PNG" align = "middle"> <figcaption style = "font-size:15px;"></figcaption></figure>
+<p>f(y) gives the probability that the output is 1. The plot of sigmoid function looks like this: </p>
+<figure><img src="images/creditcard_fraud/sigmoid.png" align = "middle"> <figcaption style = "font-size:15px;">Sigmoid Function</figcaption></figure>
+<p>So, our linear regression line is tranformed to take values in the range [0,1].</p>
+<img src="images/creditcard_fraud/linear.png" align = "middle"> 
+<p>How is θ calculated?</p>
+<p> We start with random parameters to initialize the cost function and keep updating the cost function until it reaches the minimum. This is called gradient descent. Cost function and the update rule are given by: </p>
+<figure><img src="images/creditcard_fraud/cost_function.png" align = "middle"> <figcaption style = "font-size:15px;"></figcaption></figure>
+<figure><img src="images/creditcard_fraud/Capture.PNG" align = "middle"> <figcaption style = "font-size:15px;"></figcaption></figure>
+<p> Math behind these functions can be read at <a href = http://cs229.stanford.edu/notes/cs229-notes1.pdf> Andrew Ng's CS 229 Lecture Notes</a>.</p>
+<p> Mindlessly applying logistic regression to any dataset is not the best practice. The data has to confirm to the assumptions of Logistic Regression for the model to be capable of predicting the unseen observations with a considerable accuracy. Assumptions of Logistic Regression are: </p>
+<ul>
+<li>Observations are independent of each other</li>
+<li>There is little or no multicollinearity among the independent variables </li>
+<li>Independent variables are linearly related to the log odds </li>
+</ul>
+<p>The general evaluation metrics for Logistic Regression are:</p>
+<ul>
+  <li><a href = "https://en.wikipedia.org/wiki/Akaike_information_criterion" target = "_blank">AIC</a></li>
+  <li><a href="https://stats.stackexchange.com/questions/108995/interpreting-residual-and-null-deviance-in-glm-r" target = "_blank">Null Deviance and Residual Deviance</a></li>
+  <li><a href="https://en.wikipedia.org/wiki/Confusion_matrix" target="_blank">Confusion Matrix</a></li>
+  <li><a href="https://en.wikipedia.org/wiki/Receiver_operating_characteristic",target = "_blank">ROC Curve</a></li>
+</ul>
+<p>Why isn’t the default accuracy used as the evaluation metric for logistic regression? </p>
+<p>Accuracy is just the proportion of correctly classified observations. If the dataset is imbalanced with 95% of the cases being ‘0’ and 5% as ‘1’, even if we predict all cases as ‘0’, we will have a 95% accuracy. But often we are more interested in measuring the performance of the rare class, and accuracy doesn’t really denote the efficacy of the classifier.</p>
+
+<h2><span style="text-decoration: underline;"><strong>Preparing the Data</strong></span></h2>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp Now that we understood how the algorithm works, we will prepare our data for training. Load the required libraries and read the csv file. You can download the dataset from <a href = "https://www.kaggle.com/mlg-ulb/creditcardfraud" target = "_blank">here.</a>
+</p>
+<img src="images/creditcard_fraud/code1.PNG">
+<p> As discussed before there are 28 Principal components ( V1 to V28), Time, Amount and Class. Class is our response variable. There are 284,807 rows and 31 columns.</p>
+<img src="images/creditcard_fraud/code2.PNG">
+<p>There are no missing values in the dataset. Let’s look at the proportion of classes.</p>
+<img src="images/creditcard_fraud/code3.PNG">
+<p>Woah! 284,315 out of 284,807 observations (99.8%) of the data is of class ‘Not Fraud’. Even if we predict all the transactions as not fraudulent, we will have a 99.8% accuracy and this is why accuracy is not a good measure in classification problems.</p>
+<p>Let's look at the distribution of 'Amount' and 'Time' features.</p>
+<img src="images/creditcard_fraud/code4.PNG">
+<p>The distribution of transaction amount shows that it is skewed. We will apply a log transformation to correct it.</p>
+<img src="images/creditcard_fraud/code5.PNG">
+<img src="images/creditcard_fraud/code6.PNG">
+<p>Transaction time distribution shows that most transactions happened during day time. Since transaction time is on different scale as compared to other features in our dataset, we need to scale the data. Also, the function for logistic regression used in this post uses regularization which is largely affected by the scale of data.</p>
+<img src="images/creditcard_fraud/code7.PNG">
+<p>We will now split our dataset for training and testing in the ratio 70:30. Our data is highly imbalanced. If we use the same data for training the model, it will be biased towards the ‘0’ class. To account for this, we need to oversample the class ‘1’ observations so that a balanced dataset can be used for training.</p>
+<p> We will use SMOTE to create a balanced dataset. SMOTE stands for Synthetic Minority Over-sampling Technique. To put simply, SMOTE does not create duplicate observations, it creates synthetic samples by selecting similar records and altering the columns one by one by a random amount within the difference between the adjacent records. </p>
+<img src="images/creditcard_fraud/code8.PNG">
+<p>Ahaa! There’s our balanced set with equal propotions of both classes ( 199,032 observations each).</p>
+<p>Do we require all the features in our dataset? We don’t know! Let’s run a recursive feature elimination (RFE) and use only the best features in our model. RFE repeatedly constructs a model by choosing the best or worst performing feature, setting aside the chosen one and continuing the process with the rest of the features. Features are ranked according to when they are eliminated.</p>
+<img src="images/creditcard_fraud/code9.PNG">
+<p>Let's check the p-values of the selected features using the statsmodel library. The output indicates that all the p-values are zero indicating that the features selected are significant.</p>
+<img src="images/creditcard_fraud/code10.PNG">
+
+<h2><span style="text-decoration: underline;"><strong>Training the model</strong></span></h2>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp Let’s build the model with 15 features selected by RFE and test it.</p>
+<img src="images/creditcard_fraud/code11.PNG">
+<p>What is the confusion matrix indicating?</p>
+<p>We 83,070 observations which are 'Not fradulent' and are predicted as 'Not fraudulent', </br>
+2213 observations which are 'Not fraudulent' but are predicted as 'Fraudulent',</br>
+13 observations which are 'Fraudulent' and predicted as ‘Not fraudulent’,</br>
+147 observations which are 'Fraudulent' and predicted as 'Fraudulent'. </br>Our aim is to improve the model so as to decrease the number of wrongly classified observations especially the fraudulent ones.</p>
+<p>We can improve the model by changing the ‘C’ value (the inverse of regularization strength) and the regularization method. To find the best 'C' value we will do a grid search using the GridSearchCV function. It will search among the all possible combinations of parameters given and calculates scores using validation data and outputs the best parameters. </p>
+<img src="images/creditcard_fraud/code12.PNG">
+<p>Using the grid search, we get C = 0.01 and “l2” as the best regularization method in this case. Let’s re-train the model using these parameters. </p>
+<img src="images/creditcard_fraud/code13.PNG">
+<h2><span style="text-decoration: underline;"><strong>Testing</strong></span></h2>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp On using our new model on test data, we observe that the number of wrongly classified genuine transactions have decreased but the fradulent ones remain the same.</p>
+<img src="images/creditcard_fraud/code14.PNG">
+<p>Some of the other evaluation metrics are recall, f1-score and ROC curve.</p>
+<img src="images/creditcard_fraud/code15.PNG">
+<img src="images/creditcard_fraud/code16.PNG">
+<p>The recall and F-1 score are satisfactory. The ROC is also closer towards the top border indicating the model is effective.</br>
+Can think of any other ways to predict fraudulent transactions? Build the model and let me know the recall value in the comments!</p>
