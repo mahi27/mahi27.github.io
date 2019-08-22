@@ -20,9 +20,10 @@ description: "Mahitha's Musings"
 
 # List of links in the navigation bar
 navbar-links:
+  Blog: "https://mahi27.github.io"
   About Me: "aboutme"
   Resources: "datascienceresources"
-  Author's home: "http://github.com/mahi27"
+  Author's home: "https://github.com/mahi27"
 
 # Image to show in the navigation bar - image must be a square (width = height)
 # Remove this parameter if you don't want an image in the navbar
