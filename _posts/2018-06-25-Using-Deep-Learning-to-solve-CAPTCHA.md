@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Using Deep Learning to solve CAPTCHAs
+title: Using Deep Learning to solve CAPTCHA
 author: sal
 categories: [ Neural networks, Deep learning ]
 tags: [Deep Learning, ML, CAPTCHA, Neural Networks, CNN, Convolutional Neural Networks, RELU, Image Processing]
