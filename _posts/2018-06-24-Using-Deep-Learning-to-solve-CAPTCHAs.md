@@ -5,7 +5,7 @@ author: sal
 categories: [ Neural networks, Deep learning ]
 tags: [Deep Learning, ML, CAPTCHA, Neural Networks, CNN, Convolutional Neural Networks, RELU, Image Processing]
 featured: true
-hidden: true
+hidden: false
 image: assets/images/captcha_meme.jpg
 ---
 
@@ -19,6 +19,7 @@ image: assets/images/captcha_meme.jpg
 <p>Input-->Conv-->RELU-->Pool-->Conv-->RELU-->Pool-->FullyConnected-->Output </p>
 <p>As you can see, there are four important operations - Convolution, RELU, Pooling (Sub-Sampling), and Fully Connected. 
 Before looking at each of them in detail, let us first understand how image is represented in a computer.</p>
+![gif](/assets/images/your-image.jpg)
 <figure><img src="https://github.com/mahi27/mahi27.github.io/tree/master/assets/images/8-gif.gif" align= "middle"><figcaption style = "font-size:9px;">Source:https://goo.gl/nC1roU</figcaption></figure>
 <p> Each image (from a standard camera) has three channels - red, green, blue. Each channel has matrix of pixel values ranging from 0 - 255. These three are stacked upon one another. So an image of size 20x20 is represented as an array of size 20x20x3. When converted to grayscale, the image will have only one channel.</p>
 <h4><strong> Now, the Convolution </strong></h4>
