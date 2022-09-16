@@ -19,11 +19,11 @@ image: assets/images/captcha_meme.jpg
 <p>Input-->Conv-->RELU-->Pool-->Conv-->RELU-->Pool-->FullyConnected-->Output </p>
 <p>As you can see, there are four important operations - Convolution, RELU, Pooling (Sub-Sampling), and Fully Connected. 
 Before looking at each of them in detail, let us first understand how image is represented in a computer.</p>
-<figure><img src="assets/images/8-gif.gif" align= "middle"><figcaption style = "font-size:9px;">Source:https://goo.gl/nC1roU</figcaption></figure>
+<figure><img src="https://github.com/mahi27/mahi27.github.io/tree/master/assets/images/8-gif.gif" align= "middle"><figcaption style = "font-size:9px;">Source:https://goo.gl/nC1roU</figcaption></figure>
 <p> Each image (from a standard camera) has three channels - red, green, blue. Each channel has matrix of pixel values ranging from 0 - 255. These three are stacked upon one another. So an image of size 20x20 is represented as an array of size 20x20x3. When converted to grayscale, the image will have only one channel.</p>
 <h4><strong> Now, the Convolution </strong></h4>
 <p>Convolution layer is a feature identifier. Imagine it as a flash light that is shining on the image and moving, starting from top left. The area the flash light is covering is called filter( or kernel). Filter is a matrix of numbers depending on the feature to be identified. Starting from the top left part of the image, the filter does element wise multiplication with the values in the image in its area and sums up the values. Now the filter slides by let’s say 1 unit ( called stride) and repeats the same process. This continues until it reaches the bottom right of the image. The matrix of values formed by this process is called ‘Activation Map’ or ‘Feature Map’ or 'Convolved Feature'</p>
-<figure><img src="assets/images/convolution.gif" align = "middle"><figcaption style = "font-size:9px;">Source:https://goo.gl/h7xU33</figcaption></figure>
+<figure><img src="https://github.com/mahi27/mahi27.github.io/tree/master/assets/images/convolution.gif" align = "middle"><figcaption style = "font-size:9px;">Source:https://goo.gl/h7xU33</figcaption></figure>
 <p>To put this in simple terms, let’s say our filter identifies lines. Then the resulting feature map will consist of higher values in the area where there is a line due to element-wise multiplication and 0 where there are no lines.</p>
 <h4><strong>RELU</strong></h4>
 <p>RELU stands for Rectified Linear Unit. It is a non-linear operation done after every Convolution layer. RELU replaces all negative pixel values in the feature map by zero. The purpose of ReLU is to introduce non-linearity in our Convolution Net.</p>
@@ -35,7 +35,7 @@ This layer helps in controlling overfitting as the number of parameters and comp
 <p>Fully Connected layer is a multi layer perceptron that uses softmax function (any other classification function can also be used) in the output layer for classification. The high level details of the image obtained from Pooling are used to output an N dimensional vector (N being the no.of classes in the data) representing probability of each class. </p>
 <h2><span style="text-decoration: underline;"><strong>Generating CAPTCHAs</strong></span></h2>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To train any machine learning system, we need data. For our problem, we need atleast 10000 CAPTCHAs. I have used the Python library, Claptcha and modified its function to suit my needs. Using a simple for loop, I generated 10000 CAPTCHA images with the captcha text as file name.</p>
-<img src="assets/images/captchas.jpg" align = "middle">
+<img src="https://github.com/mahi27/mahi27.github.io/tree/master/assets/images/captchas.jpg" align = "middle">
 <p>You can dowload the script<a href="https://github.com/mahi27/BlogScripts/blob/main/gencap.py" target="_blank"> here</a></p>
 <h2><span style="text-decoration: underline;"><strong>Dataset Creation</strong></span></h2>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Now that we have the images, we can train the model. Wait! Wouldn’t it be simpler to teach 26 alphabets than teach 10000 texts directly? Yes, it is! </p>
@@ -55,11 +55,11 @@ OpenCV has a function findContours to identify boundaries around continuous regi
 <p>How does training happen?
 Well, first all filters and weights are initialized with random values. The network takes an image as input and gives an output.This is forward propagation. Since weights are random, output is also random. Now, error at the output layer is calculated. Now using back propagation, gradients of error are calculated and weights are updated to minimize the error. The same process is repeated for all the images in the dataset.</p>
 <p>After 10 epochs, my model has given a validation accuracy of 98.99%!!</p>
-<img src= "assets/images/network.jpg">
+<img src= "https://github.com/mahi27/mahi27.github.io/tree/master/assets/images/network.jpg">
 <p>Check out <a href="https://blog.keras.io/building-powerful-image-classification-models-using-very-little-data.html" target="_blank">keras blog</a> for tutorials on building the model. It can be achieved in few lines of code! </p>
 <h2><span style="text-decoration: underline;"><strong>Testing</strong></span></h2>
 <p>For testing, I have generated 2000 more CAPTCHAs. I have saved the model as hdf5 file and tested the images. The accuracy was around 98% !</p>
 <h2><span style="text-decoration: underline;"><strong>Try it out!</strong></span></h2>
 <p>I have created a simple application using Tkinter to demonstrate the capabilities of the model. The application has two buttons - 'Generate' and 'Predict'. Generate is used to generate a CAPTCHA. Predict is used to predict the text, which will be displayed under the CAPTCHA.</p>
-<img src="assets/images/app_gif.gif" align="middle">
+<img src="https://github.com/mahi27/mahi27.github.io/tree/master/assets/images/app_gif.gif" align="middle">
 <p>Wanna try it out? Download the python script for the app <a href="https://github.com/mahi27/BlogScripts/blob/main/app.py" target="_blank"> here</a></p>
