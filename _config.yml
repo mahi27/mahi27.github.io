@@ -14,7 +14,7 @@ authors:
   sal:
     name: Mahitha
     display_name: Mahitha
-    gravatar: 'assets/images/avatar.png'
+    avatar: 'assets/images/avatar.png'
     email: mahitasree@gmail.com
  
 # Plugins
