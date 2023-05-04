@@ -9,6 +9,6 @@ comments: false
 
 <p>Hi, This is Mahitha. My interests include personalization and recommendations. This website is built with Jekyll and Mediumish template for Jekyll to showcase my pet projects and share my knowledge. You can reach out to me through <a href="mailto:mahitasree@gmail.com">email</a> or <a href="https://www.linkedin.com/in/mahithasree/">LinkedIn</a> if you want to colloborate on any project or have any questions.</p>
   
-<p>_Opinions expressed are solely my own and do not express the views or opinions of my employer._</p>
+<p>_Opinions expressed on this blog are solely my own and do not express the views or opinions of my employer._</p>
 
 </div>
