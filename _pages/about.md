@@ -7,10 +7,9 @@ comments: false
 
 <div class="row justify-content-between">
 
-<p>This website is built with Jekyll and Mediumish template for Jekyll to showcase my pet projects and share my knowledge.</p>
-
-<h4>Questions?</h4>
-
+<p>Hi, This is Mahitha. My interests include personalization and recommendations. This website is built with Jekyll and Mediumish template for Jekyll to showcase my pet projects and share my knowledge.</p>
 <p>You can reach out to me through <a href="mailto:mahitasree@gmail.com">email</a> or <a href="https://www.linkedin.com/in/mahithasree/">LinkedIn</a> if you want to colloborate on any project or have any questions.</p>
+  
+<p>*Opinions expressed are solely my own and do not express the views or opinions of my employer.*</p>
 
 </div>
