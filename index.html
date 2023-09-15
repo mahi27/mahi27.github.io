@@ -28,6 +28,29 @@ title: Home
 
 {% endif %}
 
+<!-- ML 101
+================================================== -->
+<section class="ml-101-series">
+    <div class="section-title">
+        <h2><span>ML 101 Series</span></h2>
+    </div>
+    <div class="row">
+
+    {% for post in site.posts %}
+
+        {% if post.ml101 == true %}
+
+            {% include ml101box.html %}
+
+        {% endif %}
+
+    {% endfor %}
+
+    </div>
+</section>
+
+{% endif %}
+
 <!-- Posts Index
 ================================================== -->
 <section class="recent-posts">
