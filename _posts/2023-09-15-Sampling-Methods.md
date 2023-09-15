@@ -1,12 +1,12 @@
 ---
 layout: post
 title: Sampling Methods - All You Need To Know!
-author: mahitha
+author: sal
 categories: D3, Sampling
 featured: false
 hidden: false
 ml101: true
-image: assets/images/randomsampling.jpeg
+image: assets/images/randomsample.jpg
 ---
 
 <style>
