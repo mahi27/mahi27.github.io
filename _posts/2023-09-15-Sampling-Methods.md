@@ -28,12 +28,12 @@ image: assets/images/randomsample.jpg
 </style>
     
 <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
-<h2><span style="text-decoration: underline;"><strong>Introduction</strong></span></h2>
+<h2><strong>Introduction</strong></h2>
 <p>Sampling is the process of creating a representative set of population. It’s almost impossible to analyze/survey a population to arrive at the results. Sampling allows for large-scale research at a realistic cost and time. There are various sampling techniques to choose from depending on the usecase, we will cover the most commonly used ones in this article.</p>
 
 <div id='d3div'></div>
 
-<h2><span style="text-decoration: underline;"><strong>Probabaility Sampling</strong></span></h2>
+<h2><strong>Probability Sampling</strong></h2>
 <p>Probability sampling is a technique in which every element in the population has an equal chance of being chosen. Since such sample would be unbiased and random, we can estimate the sampling error and the degree of confidence. This technique is best suitable for descriptive studies with large and diverse population.</p>
 
 <strong>Simple Random Sampling</strong>
@@ -47,6 +47,7 @@ image: assets/images/randomsample.jpg
 <tr>
 <td>
 
+
 ```
 #Simple Random Sampling
 from sklearn.datasets import load_iris
@@ -59,8 +60,8 @@ df = pd.DataFrame(data=np.c_[iris['data'], iris['target']],
        .assign(species=lambda x: x['target'].map(dict(enumerate(iris['target_names']))))
 #sample 100 rows from iris dataset
 simple_random = df.sample(n=50)
-
 ```
+
 
 </td>
 <td>
@@ -125,7 +126,7 @@ This is a test page for sampling methods
 <script>
 var treeData = [
     {
-      "name": "Sampling Techniques",
+      "name": "Sampling",
       "parent": "null",
       "value": 10,
       "type": "black",
