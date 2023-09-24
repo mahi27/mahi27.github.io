@@ -37,7 +37,15 @@ image: assets/images/randomsample.jpg
 <p>Probability sampling is a technique in which every element in the population has an equal chance of being chosen. Since such sample would be unbiased and random, we can estimate the sampling error and the degree of confidence. This technique is best suitable for descriptive studies with large and diverse population.</p>
 
 <strong>Simple Random Sampling</strong>
-This is a basic sampling method, where a subset is randomly selected from the population. It is popular for its simplicity and lack of bias.
+<p>This is a basic sampling method, where a subset is randomly selected from the population. It is popular for its simplicity and lack of bias.</p>
+
+<table>
+<tr>
+<th>  </th>
+<th>  </th>
+</tr>
+<tr>
+<td>
 
 ```
 #Simple Random Sampling
@@ -53,7 +61,16 @@ df = pd.DataFrame(data=np.c_[iris['data'], iris['target']],
 simple_random = df.sample(n=50)
 
 ```
+
+</td>
+<td>
+
 {% include simple_random.html %}
+
+</td>
+</tr>
+</table>
+
 
 <h4><strong>Systematic Sampling</strong></h4>
 
@@ -112,7 +129,7 @@ var treeData = [
       "parent": "null",
       "value": 10,
       "type": "black",
-      "level": "blue",
+      "level": "black",
       "url": "www.google.com",
       "children": [
         {
@@ -120,7 +137,7 @@ var treeData = [
           "parent": "Sampling Techniques",
           "value": 10,
           "type": "black",
-          "level": "blue",
+          "level": "black",
           "url": "www.google.com",
           "children": [
             {
@@ -128,7 +145,7 @@ var treeData = [
                 "parent": "Probability",
                 "value": 10,
                 "type": "black",
-                "level": "blue",
+                "level": "black",
                 "url": "www.google.com"
               },
               {
@@ -136,7 +153,7 @@ var treeData = [
                 "parent": "Probability",
                 "value": 10,
                 "type": "black",
-                "level": "blue",
+                "level": "black",
                 "url": "www.google.com"
               },
               {
@@ -144,7 +161,7 @@ var treeData = [
                 "parent": "Probability",
                 "value": 10,
                 "type": "black",
-                "level": "blue",
+                "level": "black",
                 "url": "www.google.com",
                 "children": [
                     {
@@ -152,7 +169,7 @@ var treeData = [
                         "parent": "Stratified Sampling",
                         "value": 10,
                         "type": "black",
-                        "level": "blue",
+                        "level": "black",
                         "url": "www.google.com"
                     },
                     {
@@ -160,7 +177,7 @@ var treeData = [
                         "parent": "Stratified Sampling",
                         "value": 10,
                         "type": "black",
-                        "level": "blue",
+                        "level": "black",
                         "url": "www.google.com"
                     }
                 ]
@@ -170,7 +187,7 @@ var treeData = [
                 "parent": "Probability",
                 "value": 10,
                 "type": "black",
-                "level": "blue",
+                "level": "black",
                 "url": "www.google.com"
               }
           ]
@@ -180,7 +197,7 @@ var treeData = [
           "parent": "Sampling Techniques",
           "value": 10,
           "type": "black",
-          "level": "blue",
+          "level": "black",
           "url": "www.google.com",
           "children": [
             {
@@ -188,7 +205,7 @@ var treeData = [
               "parent": "Nonprobability",
               "value": 10,
               "type": "black",
-              "level": "blue",
+              "level": "black",
               "url": "www.google.com"
             },
             {
@@ -196,7 +213,7 @@ var treeData = [
                 "parent": "Nonprobability",
                 "value": 10,
                 "type": "black",
-                "level": "blue",
+                "level": "black",
                 "url": "www.google.com"
             },
             {
@@ -204,7 +221,7 @@ var treeData = [
                 "parent": "Nonprobability",
                 "value": 10,
                 "type": "black",
-                "level": "blue",
+                "level": "black",
                 "url": "www.google.com"
             },
             {
@@ -212,7 +229,7 @@ var treeData = [
                 "parent": "Nonprobability",
                 "value": 10,
                 "type": "black",
-                "level": "blue",
+                "level": "black",
                 "url": "www.google.com"
             }
           ]
