@@ -40,17 +40,10 @@ image: assets/images/randomsample.jpg
 <p>This is a basic sampling method, where a subset is randomly selected from the population. It is popular for its simplicity and lack of bias.</p>
 
 <table>
-<tr>
-<th>    </th>
-<th>    </th>
-</tr>
-<tr>
-
-<td>
-
+<tr><th>&nbsp;</th><th>&nbsp;</th></tr>
+<tr><td>
 
 ```
-
 #Simple Random Sampling
 from sklearn.datasets import load_iris
 import pandas as pd
@@ -62,19 +55,14 @@ df = pd.DataFrame(data=np.c_[iris['data'], iris['target']],
        .assign(species=lambda x: x['target'].map(dict(enumerate(iris['target_names']))))
 #sample 100 rows from iris dataset
 simple_random = df.sample(n=50)
-
 ```
 
-
-</td>
-<td>
+</td><td>
 
 {% include simple_random.html %}
 
-</td>
-</tr>
+</td></tr>
 </table>
-
 
 <h4><strong>Systematic Sampling</strong></h4>
 
