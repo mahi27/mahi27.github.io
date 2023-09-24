@@ -41,14 +41,16 @@ image: assets/images/randomsample.jpg
 
 <table>
 <tr>
-<th>  </th>
-<th>  </th>
+<th>    </th>
+<th>    </th>
 </tr>
 <tr>
+
 <td>
 
 
 ```
+
 #Simple Random Sampling
 from sklearn.datasets import load_iris
 import pandas as pd
@@ -60,6 +62,7 @@ df = pd.DataFrame(data=np.c_[iris['data'], iris['target']],
        .assign(species=lambda x: x['target'].map(dict(enumerate(iris['target_names']))))
 #sample 100 rows from iris dataset
 simple_random = df.sample(n=50)
+
 ```
 
 
