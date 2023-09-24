@@ -26,11 +26,81 @@ image: assets/images/randomsample.jpg
 }
 
 </style>
-
     
-This is a test page for sampling methods
+<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+<h2><span style="text-decoration: underline;"><strong>Introduction</strong></span></h2>
+<p>Sampling is the process of creating a representative set of population. It’s almost impossible to analyze/survey a population to arrive at the results. Sampling allows for large-scale research at a realistic cost and time. There are various sampling techniques to choose from depending on the usecase, we will cover the most commonly used ones in this article.</p>
 
 <div id='d3div'></div>
+
+<h2><span style="text-decoration: underline;"><strong>Probabaility Sampling</strong></span></h2>
+<p>Probability sampling is a technique in which every element in the population has an equal chance of being chosen. Since such sample would be unbiased and random, we can estimate the sampling error and the degree of confidence. This technique is best suitable for descriptive studies with large and diverse population.</p>
+
+<strong>Simple Random Sampling</strong>
+This is a basic sampling method, where a subset is randomly selected from the population. It is popular for its simplicity and lack of bias.
+
+```
+#Simple Random Sampling
+from sklearn.datasets import load_iris
+import pandas as pd
+import numpy as np
+#load iris dataset
+iris = load_iris()
+df = pd.DataFrame(data=np.c_[iris['data'], iris['target']],
+        columns= iris['feature_names'] + ['target']).astype({'target': int}) \
+       .assign(species=lambda x: x['target'].map(dict(enumerate(iris['target_names']))))
+#sample 100 rows from iris dataset
+simple_random = df.sample(n=50)
+
+```
+{% include simple_random.html %}
+
+<h4><strong>Systematic Sampling</strong></h4>
+
+```
+# systematic sampling function
+def systematic_sampling(df, step):
+    rows = np.arange(0, len(df), step=step)
+    systematic_sample = df.iloc[rows]
+    return systematic_sample
+
+#sample every 3rd row
+systematic_sample = systematic_sampling(df,3)
+
+```
+{% include systematic_sample.html %}
+
+
+<h4><strong>Stratified Sampling</strong></h4>
+
+```
+#stratified sampling
+from sklearn.model_selection import train_test_split
+#sample 30% of the data
+stratified_sample,_ = train_test_split(df, test_size=0.7, stratify=df["species"])
+```
+
+{% include stratified_sample.html %}
+
+
+<h4><strong>Cluster Sampling</strong></h4>
+
+```
+#cluster sampling
+import random
+def cluster_sampling(df,clusters,n):
+    df['cluster'] = np.random.randint(0,clusters+1,size = len(df))
+    rows = random.sample(range(0,clusters+1),n+1)
+    cluster_sample = df[df.cluster.isin(rows)]
+    return cluster_sample
+
+cluster_sample = cluster_sampling(df,10,3)
+
+```
+
+{% include cluster_sample.html %}
+
+
 	
 This is a test page for sampling methods
 
@@ -42,65 +112,23 @@ var treeData = [
       "parent": "null",
       "value": 10,
       "type": "black",
-      "level": "black",
+      "level": "blue",
       "url": "www.google.com",
       "children": [
-        {
-          "name": "Nonprobability",
-          "parent": "Sampling Techniques",
-          "value": 10,
-          "type": "black",
-          "level": "black",
-          "url": "www.google.com",
-          "children": [
-            {
-              "name": "Convenience Sampling",
-              "parent": "Nonprobability",
-              "value": 10,
-              "type": "black",
-              "level": "black",
-              "url": "www.google.com"
-            },
-            {
-                "name": "Judgemental Sampling",
-                "parent": "Nonprobability",
-                "value": 10,
-                "type": "black",
-                "level": "black",
-                "url": "www.google.com"
-            },
-            {
-                "name": "Quota Sampling",
-                "parent": "Nonprobability",
-                "value": 10,
-                "type": "black",
-                "level": "black",
-                "url": "www.google.com"
-            },
-            {
-                "name": "Snowball Sampling",
-                "parent": "Nonprobability",
-                "value": 10,
-                "type": "black",
-                "level": "black",
-                "url": "www.google.com"
-            }
-          ]
-        },
         {
           "name": "Probability",
           "parent": "Sampling Techniques",
           "value": 10,
           "type": "black",
-          "level": "black",
+          "level": "blue",
           "url": "www.google.com",
           "children": [
             {
-                "name": "Random Sampling",
+                "name": "Simple Random Sampling",
                 "parent": "Probability",
                 "value": 10,
                 "type": "black",
-                "level": "black",
+                "level": "blue",
                 "url": "www.google.com"
               },
               {
@@ -108,7 +136,7 @@ var treeData = [
                 "parent": "Probability",
                 "value": 10,
                 "type": "black",
-                "level": "black",
+                "level": "blue",
                 "url": "www.google.com"
               },
               {
@@ -116,7 +144,7 @@ var treeData = [
                 "parent": "Probability",
                 "value": 10,
                 "type": "black",
-                "level": "black",
+                "level": "blue",
                 "url": "www.google.com",
                 "children": [
                     {
@@ -124,7 +152,7 @@ var treeData = [
                         "parent": "Stratified Sampling",
                         "value": 10,
                         "type": "black",
-                        "level": "black",
+                        "level": "blue",
                         "url": "www.google.com"
                     },
                     {
@@ -132,7 +160,7 @@ var treeData = [
                         "parent": "Stratified Sampling",
                         "value": 10,
                         "type": "black",
-                        "level": "black",
+                        "level": "blue",
                         "url": "www.google.com"
                     }
                 ]
@@ -142,17 +170,51 @@ var treeData = [
                 "parent": "Probability",
                 "value": 10,
                 "type": "black",
-                "level": "black",
-                "url": "www.google.com"
-              },
-              {
-                "name": "Other Sampling Methods",
-                "parent": "Probability",
-                "value": 10,
-                "type": "black",
-                "level": "black",
+                "level": "blue",
                 "url": "www.google.com"
               }
+          ]
+        },
+        {
+          "name": "Nonprobability",
+          "parent": "Sampling Techniques",
+          "value": 10,
+          "type": "black",
+          "level": "blue",
+          "url": "www.google.com",
+          "children": [
+            {
+              "name": "Convenience Sampling",
+              "parent": "Nonprobability",
+              "value": 10,
+              "type": "black",
+              "level": "blue",
+              "url": "www.google.com"
+            },
+            {
+                "name": "Judgemental Sampling",
+                "parent": "Nonprobability",
+                "value": 10,
+                "type": "black",
+                "level": "blue",
+                "url": "www.google.com"
+            },
+            {
+                "name": "Quota Sampling",
+                "parent": "Nonprobability",
+                "value": 10,
+                "type": "black",
+                "level": "blue",
+                "url": "www.google.com"
+            },
+            {
+                "name": "Snowball Sampling",
+                "parent": "Nonprobability",
+                "value": 10,
+                "type": "black",
+                "level": "blue",
+                "url": "www.google.com"
+            }
           ]
         }
       ]
