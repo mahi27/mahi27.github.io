@@ -39,39 +39,6 @@ image: assets/images/randomsample.jpg
 <strong>Simple Random Sampling</strong>
 <p>This is a basic sampling method, where a subset is randomly selected from the population. It is popular for its simplicity and lack of bias.</p>
 
-
-<table>
-<tr>
-<td> </td> <td> </td>
-</tr>
-<tr>
-<td>
-
-<code>
-#Simple Random Sampling
-from sklearn.datasets import load_iris
-import pandas as pd
-import numpy as np
-#load iris dataset
-iris = load_iris()
-df = pd.DataFrame(data=np.c_[iris['data'], iris['target']],
-        columns= iris['feature_names'] + ['target']).astype({'target': int}) \
-       .assign(species=lambda x: x['target'].map(dict(enumerate(iris['target_names']))))
-#sample 100 rows from iris dataset
-simple_random = df.sample(n=50)
-</code>
-
-</td>
-<td>
-
-{% include simple_random.html %}
-
-</td>
-</tr>
-</table>
-
-
-
 ```
 #Simple Random Sampling
 from sklearn.datasets import load_iris
@@ -135,25 +102,29 @@ cluster_sample = cluster_sampling(df,10,3)
 {% include cluster_sample.html %}
 
 <h2><strong>Nonprobability Sampling</strong></h2>
-<p></p>
+<p>Nonprobability sampling is a technique in which elements have unequal chance of being chosen. This technique is best suited for exploratory studies on small and specific population. It is not intended to draw any statistical conclusions about the population.</p>
 
 <strong>Convenience Sampling</strong>
-<p></p>
-
+<p>In this techqniue, sampling is done based on availability and relative ease of access. Researchers usually use this method to gather feedback on critical issues/products. Online surveys, market research on university campus, interviewing people at a mall are examples of this method.</p>
 
 <strong>Judgemental Sampling</strong>
-<p></p>
+<p>In this method, sampling is done based on researcher's judgement or expertise. This is often used when certain participants/elements of the population are more relevant to the research objective. Expert panels, celebrity interviews, clinical trials are examples of this method.</p>
 
 
 <strong>Quota Sampling</strong>
-<p></p>
+<p>This method is similar to stratified sampling, where researcher idenities subsets of population and then selects memebers non-randomly based on pre-specified quota. This is often used in when researcher wants to ensure that sample is representative of population based on certain attributes like geographic region, age, gender or income.</p>
 
 
 <strong>Snowball Sampling</strong>
-<p></p>
+<p>This technique involves selecting a small group of people and relying on their referrals to identify additional participants for the sample. It can result in a biased sample, and researchers should be wary that it might not be representative of the population. This method is useful when population is difficult to reach or hidden. </p>
+
+<h2><strong>Other Sampling Methods</strong></h2>
+<p>Most ML algorithms are designed to work on balanced datasets for classification. When the data is imbalanced, the minority class is often ignored, and the minority class ends up with a high misclassification rate. This is because most ML algorithms rely on the class distribution to gauge the likelihood and make predictions.</p>
+<p>Here’s where data sampling will help by transforming the imbalanced dataset to a balanced one. This allows for the algorithms to train on the modified dataset without additional data preparation. Random Oversampling, Random Undersampling, SMOTE, ADASYN, Tomek Links are some of the popular sampling methods for imbalanced datasets.
 
 
-<p>If you found our work useful, please cite it as:</p>
+<p>If you found my work useful, please cite it as:</p>
+
 ```
 {
   author        = {Tammineedi, Mahitha},
@@ -164,7 +135,7 @@ cluster_sample = cluster_sampling(df,10,3)
   url           = {https://mahi27.github.io/}
 }
 
-M. Tammineedi, Sampling Methods - All you need to know , https://mahi27.github.io/, 2023, Accessed: Spe 15 2023.
+M. Tammineedi, Sampling Methods - All you need to know , https://mahi27.github.io/, 2023, Accessed: Sep 15 2023.
 
 ```
 
@@ -287,74 +258,145 @@ var treeData = [
   ];
 
 // ************** Generate the tree diagram	 *****************
+
+<script>
+
 var margin = {top: 20, right: 120, bottom: 20, left: 120},
-	width = 960 - margin.right - margin.left,
-	height = 500 - margin.top - margin.bottom;
-	
-var i = 0;
+    width = 960 - margin.right - margin.left,
+    height = 800 - margin.top - margin.bottom;
+
+var i = 0,
+    duration = 750,
+    root;
 
 var tree = d3.layout.tree()
-	.size([height, width]);
+    .size([height, width]);
 
 var diagonal = d3.svg.diagonal()
-	.projection(function(d) { return [d.y, d.x]; });
+    .projection(function(d) { return [d.y, d.x]; });
 
-var svg = d3.select("#d3div").append("svg")
-	.attr("width", width + margin.right + margin.left)
-	.attr("height", height + margin.top + margin.bottom)
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.right + margin.left)
+    .attr("height", height + margin.top + margin.bottom)
   .append("g")
-	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
 
 root = treeData[0];
+root.x0 = height / 2;
+root.y0 = 0;
+
+function collapse(d) {
+  if (d.children) {
+    d._children = d.children;
+    d._children.forEach(collapse);
+    d.children = null;
+  }
+}
+
+root.children.forEach(collapse);
 update(root);
+
+
+d3.select(self.frameElement).style("height", "800px");
 
 function update(source) {
 
   // Compute the new tree layout.
   var nodes = tree.nodes(root).reverse(),
-	  links = tree.links(nodes);
+      links = tree.links(nodes);
 
   // Normalize for fixed-depth.
   nodes.forEach(function(d) { d.y = d.depth * 180; });
 
-  // Declare the nodes…
+  // Update the nodes…
   var node = svg.selectAll("g.node")
-	  .data(nodes, function(d) { return d.id || (d.id = ++i); });
+      .data(nodes, function(d) { return d.id || (d.id = ++i); });
 
-  // Enter the nodes.
+  // Enter any new nodes at the parent's previous position.
   var nodeEnter = node.enter().append("g")
-	  .attr("class", "node")
-	  .attr("transform", function(d) { 
-		  return "translate(" + d.y + "," + d.x + ")"; });
+      .attr("class", "node")
+      .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
+      .on("click", click);
 
   nodeEnter.append("circle")
-	  .attr("r", function(d) { return d.value; })
-	  .style("stroke", function(d) { return d.type; })
-	  .style("fill", function(d) { return d.level; });
-  
-  nodeEnter.append("a")
-    .attr("xlink:href", function(d) { return d.url; })
-    .append("text")
-    .attr("x", function(d) { 
-		  return d.children || d._children ? 
-		  (d.value + 4) * -1 : d.value + 4 })
-	  .attr("dy", ".35em")
-	  .attr("text-anchor", function(d) { 
-		  return d.children || d._children ? "end" : "start"; })
-	  .text(function(d) { return d.name; })
-    .attr("xlink:href", function(d) { return d.url; })
-	  .style("fill-opacity", 1);
+      .attr("r", 1e-6)
+      .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
 
-  // Declare the links…
+  nodeEnter.append("text")
+      .attr("x", function(d) { return d.children || d._children ? -10 : 10; })
+      .attr("dy", ".35em")
+      .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
+      .text(function(d) { return d.name; })
+      .style("fill-opacity", 1e-6);
+
+  // Transition nodes to their new position.
+  var nodeUpdate = node.transition()
+      .duration(duration)
+      .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
+
+  nodeUpdate.select("circle")
+      .attr("r", 4.5)
+      .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+
+  nodeUpdate.select("text")
+      .style("fill-opacity", 1);
+
+  // Transition exiting nodes to the parent's new position.
+  var nodeExit = node.exit().transition()
+      .duration(duration)
+      .attr("transform", function(d) { return "translate(" + source.y + "," + source.x + ")"; })
+      .remove();
+
+  nodeExit.select("circle")
+      .attr("r", 1e-6);
+
+  nodeExit.select("text")
+      .style("fill-opacity", 1e-6);
+
+  // Update the links…
   var link = svg.selectAll("path.link")
-	  .data(links, function(d) { return d.target.id; });
+      .data(links, function(d) { return d.target.id; });
 
-  // Enter the links.
+  // Enter any new links at the parent's previous position.
   link.enter().insert("path", "g")
-	  .attr("class", "link")
-  	  .style("stroke", function(d) { return d.target.level; })
-	  .attr("d", diagonal);
+      .attr("class", "link")
+      .attr("d", function(d) {
+        var o = {x: source.x0, y: source.y0};
+        return diagonal({source: o, target: o});
+      });
 
+  // Transition links to their new position.
+  link.transition()
+      .duration(duration)
+      .attr("d", diagonal);
+
+  // Transition exiting nodes to the parent's new position.
+  link.exit().transition()
+      .duration(duration)
+      .attr("d", function(d) {
+        var o = {x: source.x, y: source.y};
+        return diagonal({source: o, target: o});
+      })
+      .remove();
+
+  // Stash the old positions for transition.
+  nodes.forEach(function(d) {
+    d.x0 = d.x;
+    d.y0 = d.y;
+  });
+}
+
+// Toggle children on click.
+function click(d) {
+  if (d.children) {
+    d._children = d.children;
+    d.children = null;
+  } else {
+    d.children = d._children;
+    d._children = null;
+  }
+  update(d);
 }
 
 </script>
