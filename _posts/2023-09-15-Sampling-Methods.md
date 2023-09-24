@@ -131,7 +131,7 @@ cluster_sample = cluster_sampling(df,10,3)
 
 <p>If you found my work useful, please cite it as:</p>
 
-```
+<code>
 {
   author        = {Tammineedi, Mahitha},
   title         = {Sampling Methods - All you need to know},
@@ -140,11 +140,9 @@ cluster_sample = cluster_sampling(df,10,3)
   note          = {Accessed: 2023-09-15},
   url           = {https://mahi27.github.io/}
 }
-```
-
-```
+  
 M. Tammineedi, Sampling Methods - All you need to know , https://mahi27.github.io/, 2023, Accessed: Sep 15 2023.
-```
+</code>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
 <script>
@@ -262,6 +260,8 @@ var treeData = [
       ]
     }
   ];
+</script>
+<script>
 
 var margin = {top: 20, right: 120, bottom: 20, left: 120},
     width = 960 - margin.right - margin.left,
