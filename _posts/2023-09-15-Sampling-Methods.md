@@ -131,9 +131,7 @@ cluster_sample = cluster_sampling(df,10,3)
 
 <p>If you found my work useful, please cite it as:</p>
 
-
 ```
-
 {
   author        = {Tammineedi, Mahitha},
   title         = {Sampling Methods - All you need to know},
@@ -142,11 +140,11 @@ cluster_sample = cluster_sampling(df,10,3)
   note          = {Accessed: 2023-09-15},
   url           = {https://mahi27.github.io/}
 }
-
-M. Tammineedi, Sampling Methods - All you need to know , https://mahi27.github.io/, 2023, Accessed: Sep 15 2023.
-
 ```
 
+```
+M. Tammineedi, Sampling Methods - All you need to know , https://mahi27.github.io/, 2023, Accessed: Sep 15 2023.
+```
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
 <script>
@@ -282,7 +280,7 @@ var tree = d3.layout.tree()
 var diagonal = d3.svg.diagonal()
     .projection(function(d) { return [d.y, d.x]; });
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select("#d3div").append("svg")
     .attr("width", width + margin.right + margin.left)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
