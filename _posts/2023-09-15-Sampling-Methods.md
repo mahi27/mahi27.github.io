@@ -130,9 +130,7 @@ cluster_sample = cluster_sampling(df,10,3)
 
 
 <p>If you found my work useful, please cite it as:</p>
-
-
-```
+<pre>
 {
   author        = {Tammineedi, Mahitha},
   title         = {Sampling Methods - All you need to know},
@@ -143,7 +141,8 @@ cluster_sample = cluster_sampling(df,10,3)
 }
 
 M. Tammineedi, Sampling Methods - All you need to know , https://mahi27.github.io/, 2023, Accessed: Sep 15 2023.
-```
+ 
+</pre>
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
