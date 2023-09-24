@@ -11,18 +11,24 @@ image: assets/images/randomsample.jpg
 
 <style>
 
+.node {
+  cursor: pointer;
+}
+
 .node circle {
   fill: #fff;
   stroke: steelblue;
-  stroke-width: 3px;
+  stroke-width: 1.5px;
 }
 
-.node text { font: 12px sans-serif; }
+.node text {
+  font: 10px sans-serif;
+}
 
 .link {
   fill: none;
   stroke: #ccc;
-  stroke-width: 2px;
+  stroke-width: 1.5px;
 }
 
 </style>
@@ -125,7 +131,9 @@ cluster_sample = cluster_sampling(df,10,3)
 
 <p>If you found my work useful, please cite it as:</p>
 
+
 ```
+
 {
   author        = {Tammineedi, Mahitha},
   title         = {Sampling Methods - All you need to know},
@@ -260,7 +268,6 @@ var treeData = [
 // ************** Generate the tree diagram	 *****************
 
 <script>
-
 var margin = {top: 20, right: 120, bottom: 20, left: 120},
     width = 960 - margin.right - margin.left,
     height = 800 - margin.top - margin.bottom;
@@ -281,23 +288,36 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+  console.log(treeData)
+  flare=JSON.parse(treeData);
+  console.log(flare);
 
-root = treeData[0];
-root.x0 = height / 2;
-root.y0 = 0;
+  root = flare;
+  root.x0 = height / 2;
+  root.y0 = 0;
 
-function collapse(d) {
-  if (d.children) {
-    d._children = d.children;
-    d._children.forEach(collapse);
-    d.children = null;
+  function parse_data(flare)
+  {
+  console.log("in Parse_data")
+
+  root = flare;
+  root.x0 = height / 2;
+  root.y0 = 0;
+
+      function collapse(d) {
+        console.log("in collapse")
+        if (d.children) {
+          d._children = d.children;
+          d._children.forEach(collapse);
+          d.children = null;
+        }
+      }
+
+  root.children.forEach(collapse);
+  update(root);
   }
-}
 
-root.children.forEach(collapse);
-update(root);
-
-
+parse_data(flare);
 d3.select(self.frameElement).style("height", "800px");
 
 function update(source) {
