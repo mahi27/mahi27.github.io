@@ -39,10 +39,6 @@ image: assets/images/randomsample.jpg
 <strong>Simple Random Sampling</strong>
 <p>This is a basic sampling method, where a subset is randomly selected from the population. It is popular for its simplicity and lack of bias.</p>
 
-<table>
-<tr><th>&nbsp;</th><th>&nbsp;</th></tr>
-<tr><td>
-
 ```
 #Simple Random Sampling
 from sklearn.datasets import load_iris
@@ -57,17 +53,14 @@ df = pd.DataFrame(data=np.c_[iris['data'], iris['target']],
 simple_random = df.sample(n=50)
 ```
 
-</td><td>
-
 {% include simple_random.html %}
 
-</td></tr>
-</table>
-
-<h4><strong>Systematic Sampling</strong></h4>
+<strong>Systematic Sampling</strong>
+<p>In this method, members of the sample are selected from population in a systematic way - at a fixed sampling interval from a random starting point. Compared to simple random sampling, this method has higher degree of control and low chance of data contanimation. Size of population is needed beforehand for this method to work well.</p>
 
 ```
 # systematic sampling function
+# 0 as starting point
 def systematic_sampling(df, step):
     rows = np.arange(0, len(df), step=step)
     systematic_sample = df.iloc[rows]
@@ -75,15 +68,16 @@ def systematic_sampling(df, step):
 
 #sample every 3rd row
 systematic_sample = systematic_sampling(df,3)
-
 ```
+
 {% include systematic_sample.html %}
 
-
-<h4><strong>Stratified Sampling</strong></h4>
+<h4>Stratified Sampling</h4>
+<p>This method involves division of population into subsets or strata. Proportionate sampling takes each strata in the sample proportionate to the population size while disproportionate sampling, certain strata will oversample or undersample based on research question.
+</p>
 
 ```
-#stratified sampling
+#proprotionate stratified sampling
 from sklearn.model_selection import train_test_split
 #sample 30% of the data
 stratified_sample,_ = train_test_split(df, test_size=0.7, stratify=df["species"])
@@ -91,11 +85,12 @@ stratified_sample,_ = train_test_split(df, test_size=0.7, stratify=df["species"]
 
 {% include stratified_sample.html %}
 
-
-<h4><strong>Cluster Sampling</strong></h4>
+<h4>Cluster Sampling</h4>
+<p>In this method, population is divided into clusters and then some of the clusters are randomly selected as the sample. There are variations to this method such as single-stage, double-stage and multi-stage each adding randomness with the stages. This method is used when the population is too spread out. This method can result in a high sampling error if the clusters aren't representative of the population.
+</p>
 
 ```
-#cluster sampling
+#single stage cluster sampling
 import random
 def cluster_sampling(df,clusters,n):
     df['cluster'] = np.random.randint(0,clusters+1,size = len(df))
@@ -104,14 +99,13 @@ def cluster_sampling(df,clusters,n):
     return cluster_sample
 
 cluster_sample = cluster_sampling(df,10,3)
-
 ```
 
 {% include cluster_sample.html %}
 
+<h2><strong>Non-Probability Sampling</strong></h2>
+<p></p>
 
-	
-This is a test page for sampling methods
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
 <script>
