@@ -39,6 +39,39 @@ image: assets/images/randomsample.jpg
 <strong>Simple Random Sampling</strong>
 <p>This is a basic sampling method, where a subset is randomly selected from the population. It is popular for its simplicity and lack of bias.</p>
 
+
+<table>
+<tr>
+<td> </td> <td> </td>
+</tr>
+<tr>
+<td>
+
+```
+#Simple Random Sampling
+from sklearn.datasets import load_iris
+import pandas as pd
+import numpy as np
+#load iris dataset
+iris = load_iris()
+df = pd.DataFrame(data=np.c_[iris['data'], iris['target']],
+        columns= iris['feature_names'] + ['target']).astype({'target': int}) \
+       .assign(species=lambda x: x['target'].map(dict(enumerate(iris['target_names']))))
+#sample 100 rows from iris dataset
+simple_random = df.sample(n=50)
+```
+
+</td>
+<td>
+
+{% include simple_random.html %}
+
+</td>
+</tr>
+</table>
+
+
+
 ```
 #Simple Random Sampling
 from sklearn.datasets import load_iris
@@ -72,9 +105,8 @@ systematic_sample = systematic_sampling(df,3)
 
 {% include systematic_sample.html %}
 
-<h4>Stratified Sampling</h4>
-<p>This method involves division of population into subsets or strata. Proportionate sampling takes each strata in the sample proportionate to the population size while disproportionate sampling, certain strata will oversample or undersample based on research question.
-</p>
+<strong>Stratified Sampling</strong>
+<p>This method involves division of population into subsets or strata. Proportionate sampling takes each strata in the sample proportionate to the population size while disproportionate sampling, certain strata will oversample or undersample based on research question.</p>
 
 ```
 #proprotionate stratified sampling
@@ -85,9 +117,8 @@ stratified_sample,_ = train_test_split(df, test_size=0.7, stratify=df["species"]
 
 {% include stratified_sample.html %}
 
-<h4>Cluster Sampling</h4>
-<p>In this method, population is divided into clusters and then some of the clusters are randomly selected as the sample. There are variations to this method such as single-stage, double-stage and multi-stage each adding randomness with the stages. This method is used when the population is too spread out. This method can result in a high sampling error if the clusters aren't representative of the population.
-</p>
+<strong>Cluster Sampling</strong>
+<p>In this method, population is divided into clusters and then some of the clusters are randomly selected as the sample. There are variations to this method such as single-stage, double-stage and multi-stage each adding randomness with the stages. This method is used when the population is too spread out. This method can result in a high sampling error if the clusters aren't representative of the population.</p>
 
 ```
 #single stage cluster sampling
@@ -103,8 +134,39 @@ cluster_sample = cluster_sampling(df,10,3)
 
 {% include cluster_sample.html %}
 
-<h2><strong>Non-Probability Sampling</strong></h2>
+<h2><strong>Nonprobability Sampling</strong></h2>
 <p></p>
+
+<strong>Convenience Sampling</strong>
+<p></p>
+
+
+<strong>Judgemental Sampling</strong>
+<p></p>
+
+
+<strong>Quota Sampling</strong>
+<p></p>
+
+
+<strong>Snowball Sampling</strong>
+<p></p>
+
+
+<p>If you found our work useful, please cite it as:</p>
+```
+{
+  author        = {Tammineedi, Mahitha},
+  title         = {Sampling Methods - All you need to know},
+  howpublished  = {\url{https://mahi27.github.io/}},
+  year          = {2023},
+  note          = {Accessed: 2023-09-15},
+  url           = {https://mahi27.github.io/}
+}
+
+M. Tammineedi, Sampling Methods - All you need to know , https://mahi27.github.io/, 2023, Accessed: Spe 15 2023.
+
+```
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
