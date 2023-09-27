@@ -2,7 +2,7 @@
 layout: post
 title: Sampling Methods - All You Need To Know!
 author: sal
-categories: D3, Sampling
+categories: [ Sampling, Python ]
 featured: false
 hidden: false
 ml101: true
