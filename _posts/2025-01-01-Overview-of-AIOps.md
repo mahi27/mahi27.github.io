@@ -3,7 +3,7 @@ layout: post
 title: Overview of AIOps
 author: sal
 categories: [ AI, ML, Analytics ]
-featured: true
+featured: false
 hidden: false
 ml101: true
 image: assets/images/aiops_venn.png
