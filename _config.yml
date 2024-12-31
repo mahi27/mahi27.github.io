@@ -8,6 +8,7 @@ baseurl: "https://mahi27.github.io"
 google_analytics: 'UA-120959956-1'
 include: ["_pages"]
 permalink: /:title/
+future: true
 
 # Authors
 authors:

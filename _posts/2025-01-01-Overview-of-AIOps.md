@@ -1,6 +1,6 @@
 ---
 layout: post
-title: What is AIOps?
+title: Overview of AIOps
 author: sal
 categories: [ AI, ML, Analytics ]
 featured: true
@@ -10,6 +10,19 @@ image: assets/images/aiops_venn.png
 ---
     
 <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+<style>
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 15px;
+  }
+
+  th {
+    background-color: #cacfd9;
+    text-align: center;
+  }
+
+</style>
 <h2><strong>What is AIOps</strong></h2>
 <p>Let’s talk about something that might just be the future of IT operations. No, it’s not the latest language or framework or yet another leetcode blind playlist. I’m talking about <strong>AIOps</strong>.
 <br>
@@ -23,10 +36,10 @@ image: assets/images/aiops_venn.png
 <br>
 Here’s how it works in a nutshell:
 <ul>
-<li>Data Collection: AIOps pulls data from all kinds of sources—logs, monitoring tools, servers, and apps. It takes everything in, analyzes it, and starts looking for patterns.</li>
-<li>Event Correlation: If you’re getting hit with a flood of alerts, AIOps can connect the dots between them. It can identify the root cause of an issue, even when the alerts are all over the place.</li>
-<li>Anomaly Detection: AIOps can actively monitor your systems and flag anything that seems out of the ordinary. It’s an early warning system in place, spotting potential issues before they escalate </li>
-<li> Automated Remediation:  When AIOps detects an issue, it doesn’t just notify you—it can also take action on its own. Whether it’s restarting a service or triggering a workflow, AIOps reduces the need for manual intervention.</li>
+<li><strong>Data Collection: </strong>AIOps pulls data from all kinds of sources—logs, monitoring tools, servers, and apps. It takes everything in, analyzes it, and starts looking for patterns.</li>
+<li><strong>Event Correlation: </strong>If you’re getting hit with a flood of alerts, AIOps can connect the dots between them. It can identify the root cause of an issue, even when the alerts are all over the place.</li>
+<li><strong>Anomaly Detection: </strong>AIOps can actively monitor your systems and flag anything that seems out of the ordinary. It’s an early warning system in place, spotting potential issues before they escalate </li>
+<li><strong>Automated Remediation: </strong>When AIOps detects an issue, it doesn’t just notify you—it can also take action on its own. Whether it’s restarting a service or triggering a workflow, AIOps reduces the need for manual intervention.</li>
 </ul>
 
 <h2><strong>Ops Landscape</strong></h2>
@@ -91,19 +104,4 @@ Here’s how it works in a nutshell:
   </tr>
 </table>
 
-
-
-<p>If you found my work useful, please cite it as:</p>
-<pre>
-{
-  author        = {Tammineedi, Mahitha},
-  title         = {What is AIOps},
-  howpublished  = {\url{https://mahi27.github.io/}},
-  year          = {2024},
-  note          = {Accessed: 2025-01-01},
-  url           = {https://mahi27.github.io/}
-}
-
-M. Tammineedi, What is AIOps, https://mahi27.github.io/, 2025, Accessed: Jan 01 2025.
- 
-</pre>
+<p>Do you use AIOps tools at your work? Please share your thoughts!</p>
